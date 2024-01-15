@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+        .rounded-button {
+            border-radius: 10px;
+            border: none;
+            background-color:rgb(152, 152, 152);
+            font-size: 16px;
+            cursor: pointer;
+            font-family:Arial;
+            width:100px;
+            height:40px;
+        }
+
+        .metamask-button {
+            background-color: #f5a001;
+            border: none;
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 40px 300px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+    <title>IOT Web</title>
+  </head>
+  <body>
+    <div class="button-container">
+        <button type="button" class="rounded-button" style="margin-top:20px;margin-left:50px;">Home</button>
+        <button type="button" class="rounded-button" style="margin-top:20px;margin-left:100px;">Producer</button>
+        <button type="button" class="rounded-button" style="margin-top:20px;margin-left:150px;">Receiver</button>
+        <button type="button" class="rounded-button" style="margin-top:20px;margin-left:180px;">Track</button>
+        <button type="button" class="metamask-button" style="font-family:Arial;margin-top:20px;margin-right:100px;">Connect MetaMask </button>
+    </div>
+    <p style="font-size: 28px;text-align: center;">Admin Page</p>
+    <form id="addressForm">
+        <input type="text" style="font-size: 24px;" id="address" name="address" required>
+        <button type="submit" class="metamask-button" style="margin-left: 30px;">Submit</button>
+    </form>
+  </body>
+</html>
