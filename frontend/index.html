@@ -32,18 +32,19 @@
             justify-content: space-around;
         }
     </style>
+    <script src="scripts.js"></script>
     <title>IOT Web</title>
   </head>
   <body>
     <div class="button-container">
-        <button type="button" class="rounded-button" style="margin-top:20px;margin-left:50px;">Home</button>
+        <button type="button" onclick="myFunction()" class="rounded-button" style="margin-top:20px;margin-left:50px;">Home</button>
         <button type="button" class="rounded-button" style="margin-top:20px;margin-left:100px;">Producer</button>
         <button type="button" class="rounded-button" style="margin-top:20px;margin-left:150px;">Receiver</button>
         <button type="button" class="rounded-button" style="margin-top:20px;margin-left:180px;">Track</button>
         <button type="button" class="metamask-button" style="font-family:Arial;margin-top:20px;margin-right:100px;">Connect MetaMask </button>
     </div>
     <p style="font-size: 28px;text-align: center;">Admin Page</p>
-    <form id="addressForm">
+    <form action="" id="addressForm">
         <input type="text" style="font-size: 24px;" id="address" name="address" required>
         <button type="submit" class="metamask-button" style="margin-left: 30px;">Submit</button>
     </form>
