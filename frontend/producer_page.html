@@ -28,35 +28,6 @@
         background-color: #45a049;
       }
 
-      .big-orange-button {
-        border-radius: 25px;
-        padding: 15px 30px;
-        font-size: 18px;
-        border: none;
-        background-color: #FFA500;
-        color: white;
-        cursor: pointer;
-        margin-left: 20px;
-      }
-
-      .big-orange-button:hover {
-        background-color: #FF8C00;
-      }
-
-      .text-block {
-        margin-top: 50px;
-        text-align: center;
-      }
-
-      .text-block h1 {
-        font-size: 36px;
-        margin-bottom: 20px;
-      }
-
-      .text-block p {
-        font-size: 24px;
-      }
-
       .text-boxes {
         display: flex;
         justify-content: space-between;
@@ -76,29 +47,27 @@
         padding: 10px 20px;
         font-size: 16px;
         border: none;
-background-color: #FFC0CB;
+        background-color: #FFC0CB;
         color: white;
         cursor: pointer;
         margin-left: 20px;
       }
 
       .pink-button:hover {
-        background-color: #FFB6C1;
+        background-color: #ff667d;
+      }
+      text-block {
+        margin-top: 50px;
+        text-align: center;
       }
 
-      .orange-button {
-        border-radius: 25px;
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-background-color: #FFA500;
-        color: white;
-        cursor: pointer;
-        margin-left: 20px;
+      .text-block h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
       }
 
-      .orange-button:hover { 
-        background-color: #FF8C00;
+      .text-block p {
+        font-size: 24px;
       }
     </style>
   </head>
@@ -108,14 +77,15 @@ background-color: #FFA500;
       <a href="producer_page.html" class="top-button">Producer</a>
       <a href="receiver_page.html" class="top-button">Receiver</a>
       <a href="track_page.html" class="top-button">Track</a>
-      <button class="big-orange-button">Connect MetaMask</button>
     </div>
     <div class="text-block">
-      <h1>Admin page</h1>
+      <h1>Producer page</h1>
     </div>
     <div class="text-boxes">
-      <input type="text" class="text-box" placeholder="" />
-      <button class="orange-button">Submit</button>
+      <input type="text" class="text-box" placeholder="destination" />
+      <input type="text" class="text-box" placeholder="receiver" />
+      <input type="text" class="text-box" placeholder="transportation" />
+      <button class="pink-button">Make package</button>
     </div>
   </body>
 </html>
