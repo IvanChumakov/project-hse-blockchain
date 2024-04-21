@@ -1,21 +1,12 @@
-function myFunction() {
-    alert("Hello, world!");
-}
+const connectButton = document.getElementById("connect_button")
+connectButton.onclick = connect
 
-document.addEventListener('DOMContentLoaded', () => {
-    const button = document.getElementById('button_to_click');
-    button.addEventListener('click', () => {
-        alert('Hello World');
-    });
-});
 
-document.getElementById('addressForm').addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    let data = document.getElementById("address") 
-    if (data.value == "") {
-        alert("You should input something")
+async function connect() {
+    if (typeof window.ethereum !== "undefined"){
+        await window.ethereum.request({method: "eth_requestAccounts"})
+        console.log("Metamask connected")
     } else {
-        alert(data.value)
+        console.lod("Istall metamask")
     }
-});
+}
