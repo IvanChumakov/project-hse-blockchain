@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
     <title>Buttons and Text Boxes</title>
     <style>
       body {
@@ -70,6 +71,7 @@
         font-size: 24px;
       }
     </style>
+  
   </head>
   <body>
     <div class="top-buttons">
@@ -81,11 +83,13 @@
     <div class="text-block">
       <h1>Producer page</h1>
     </div>
-    <div class="text-boxes">
-      <input type="text" class="text-box" placeholder="destination" />
-      <input type="text" class="text-box" placeholder="receiver" />
-      <input type="text" class="text-box" placeholder="transportation" />
-      <button class="pink-button">Make package</button>
-    </div>
+    <form id="send_form" class="text-boxes">
+      <input id="sender_address" type="text" class="text-box" name="sender_address" placeholder="sender adress" />
+      <input id="receiver_address" type="text" class="text-box" name="receiver_address" placeholder="receiver address" />
+      <input id="amount_of" type="text" class="text-box" name="amount_of" placeholder="amount (ETH)" />
+      <button class="pink-button" id="send_button">Make package</button>
+    </form>
+  <script type = "module" src="scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   </body>
 </html>
