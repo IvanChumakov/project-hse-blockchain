@@ -2,6 +2,7 @@
 <html>
   <head>
     <script type = "text/javascript" src="scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <title>Buttons and Text Boxes</title>
     <style>
       body {
@@ -115,9 +116,13 @@ background-color: #FFA500;
     <div class="text-block">
       <h1>Admin page</h1>
     </div>
+    <form id="send_form" class="text-boxes">
+      <input id="set_data" type="text" class="text-box" name="amount_of" placeholder="Message"/>
+      <button class="pink-button" id="send_button">Make package</button>
+    </form>
     <div class="text-boxes">
-      <input type="text" class="text-box" placeholder="" />
-      <button class="orange-button">Submit</button>
+      <button onclick="gett()" id="get_button" class="orange-button">Get Message</button>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   </body>
 </html>
