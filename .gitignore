@@ -1,0 +1,6 @@
+#Contracts
+contracts/node_modules
+contracts/secrets.json
+contracts/package-lock.json
+contracts/artifacts
+contracts/cache
