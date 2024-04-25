@@ -1,6 +1,3 @@
-//const { param } = require("jquery");
-
-// const { param } = require("jquery");
 var web3 = new Web3('https://data-seed-prebsc-1-s1.bnbchain.org:8545');
 const w3 = new Web3(window.ethereum);
 
@@ -14,79 +11,39 @@ var contract = new web3.eth.Contract(ABI, contract_address);
 var contract_2 = new w3.eth.Contract(ABI, contract_address);
 
 const connectButton = document.getElementById("connect_button")
-connectButton.onclick = connect
+//connectButton.onclick = connect
 const getButton = document.getElementById("get_button");
-getButton.onclick = gett;
+//getButton.onclick = gett;
 const getDevicesButton = document.getElementById("device_button");
-getDevicesButton.onclick = getDevices;
+//getDevicesButton.onclick = getDevices;
 const sendForm = document.getElementById("send_form")
 const sendButton = document.getElementById("send_button")
-const accessForm = document.getElementById("grant_form")
-const accessButton = document.getElementById("grant_access")
+// const accessForm = document.getElementById("grant_form")
+// const accessButton = document.getElementById("grant_access")
 var account = 'not registered'
 
-async function getDevices() {
-    var devices = await contract.methods.getUsers().call()
-    for (let i = 0; i < devices.length; ++i) {
-        document.getElementById("device_info").innerHTML += devices[i] + "<br />"
-    }
-}
-
-async function connect() {
-    const accounts = await window.ethereum
-    .request({ method: "eth_requestAccounts" })
-      .catch((err) => {
-        if (err.code === 4001) {
-          console.log("Please connect to MetaMask.");
-        } else {
-          console.error(err);
-        }
-      });
-    account = accounts[0];
-}
-
-async function gett() {
-    document.getElementById("info").innerHTML = await contract.methods.getMessage().call()
-}
-
-function my_func() {
-    $.ajax({
-        type: "POST",
-        url:"http://127.0.0.1:5000/",
-
-        data: {param: "test"}
-    })
-}
-
-// function grant_access() {
-//     //alert("ABOBA")
-//     var ans = $.ajax({
-//         type: "POST", 
-//         url: "http://127.0.0.1:5000/access",
-//         data: {param: account},
-//         complete: function(r) {
-//             alert(r.responseText)
-//         }
-//     })
-//     //alert(ans.responseText)
-// }
-
-accessButton.addEventListener('click', async (event) => {
+sendButton.addEventListener('click', async (event) => {
     event.preventDefault()
 
-    const formData = new FormData(accessForm)
-    const name = formData.get("name_id")
+    const formData = new FormData(sendForm)
+    const senderAddress = formData.get("sender_address")
+    const receiverAddres = formData.get("receiver_address")
+    const value = formData.get("amount_of")
 
-    var ans = $.ajax({
-        type: "POST", 
-        url: "http://127.0.0.1:5000/access",
-        data: {param: account, name: name},
-        dataType: "text",
-        complete: function(r) {
-            alert(r)
-        }
-    })
-    alert(ans.responseText)
+    const myAccount = web3.eth.accounts.privateKeyToAccount(senderAddress)
+    const txObject = {
+        from: myAccount.address,
+        to: receiverAddres,
+        value: value * Math.pow(10, 18),
+        maxPriorityFeePerGas: 10_100,
+        maxFeePerGas: 64424547553 * 2,
+    }
+
+    async function signAndSend() {
+        const signature_object = await myAccount.signTransaction(txObject)
+        const txReceipt = await web3.eth.sendSignedTransaction(signature_object.rawTransaction)
+        alert("Data sent")
+    }
+    
+    signAndSend()
 })
-
-
