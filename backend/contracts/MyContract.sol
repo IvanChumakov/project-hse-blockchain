@@ -8,6 +8,8 @@ contract MyContract {
     string private message;
     address public owner;
 
+    mapping(address => bool) public userAccess;
+
     // The fixed amount of tokens, stored in an unsigned integer type variable.
     uint256 public totalSupply = 1000000;
     // A mapping is a key/value map. Here we store each account's balance.
@@ -20,6 +22,10 @@ contract MyContract {
         balances[msg.sender] = totalSupply;
         owner = msg.sender;
         message = "Initial message";
+    }
+
+    function grantAccess() {
+        
     }
 
     function setMessage(string memory _newMessage) public {

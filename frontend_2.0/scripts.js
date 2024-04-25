@@ -27,26 +27,20 @@ async function connect() {
 }
 
 async function gett() {
-    console.log(await contract.methods.getMessage().call());
-    await contract_2.methods.setMessage("aboba").send({
-      from: contract_address,
-      gasPrice: '10',
-      gas: '1000000',
-    });
-    
-    console.log(await contract.methods.getMessage().call());
+    document.getElementById("info").innerHTML = await contract.methods.getMessage().call();
 }
 
-sendButton.addEventListener('click', async (event) => {
-  event.preventDefault()
+// sendButton.addEventListener('click', async (event) => {
+//   event.preventDefault()
 
-  const formData = new FormData(sendForm)
-  const value = formData.get("set_data")
-  console.log(value + "!!");
+//   const formData = new FormData(sendForm)
+//   const value = formData.get("set_data")
+//   document.getElementById("info").innerHTML = value
+//   //console.log(value + "!!");
 
-  await contract.methods.setMessage("aboba").send({
-    from: contract_address,
-    gasPrice: '10',
-    gas: '1000000',
-  });
-})
+//   await contract.methods.setMessage("aboba").send({
+//     from: contract_address,
+//     gasPrice: '10',
+//     gas: '1000000',
+//   });
+// })

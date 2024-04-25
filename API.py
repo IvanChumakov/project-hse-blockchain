@@ -1,8 +1,13 @@
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+node_url = "https://data-seed-prebsc-1-s1.bnbchain.org:8545"
+
+idx = 0
 
 # Initialize endpoint URL
-node_url = "https://data-seed-prebsc-1-s1.bnbchain.org:8545"
 
 # Create the node connection
 web3 = Web3(Web3.HTTPProvider(node_url))
@@ -33,25 +38,51 @@ contract_address = "0x1b6F9647fec759E6B83717936e375a96BF965281"
 # Create smart contract instance
 contract = web3.eth.contract(address=contract_address, abi=abi)
 
-result = contract.functions.getMessage().call()
-print(result)
+# result = contract.functions.getMessage().call()
+# print(result)
 
 ############################################################################################
 
 # initialize the chain id, we need it to build the transaction for replay protection
-Chain_id = web3.eth.chain_id
-print("Processing...")
-# Call your function
-tx_hash = contract.functions.setMessage("New message").build_transaction(
-    {
-        "gasPrice": web3.eth.gas_price,
-        "chainId": 97,
-        "from": caller,
-        "nonce": nonce
-    }
-)
-signed_transaction = web3.eth.account.sign_transaction(tx_hash, private_key = private_key)
-send_tx = web3.eth.send_raw_transaction(signed_transaction.rawTransaction)
-web3.eth.wait_for_transaction_receipt(send_tx)
+@app.route('/', methods=['POST'])
+def set_message():
+    global idx
+    data = request.form['param']
+    Chain_id = web3.eth.chain_id
+    print("Processing...")
+    # Call your function
+    tx_hash = contract.functions.setMessage(data).build_transaction(
+        {
+            "gasPrice": web3.eth.gas_price,
+            "chainId": 97,
+            "from": caller,
+            "nonce": nonce + idx
+        }
+    )
+    signed_transaction = web3.eth.account.sign_transaction(tx_hash, private_key = private_key)
+    send_tx = web3.eth.send_raw_transaction(signed_transaction.rawTransaction)
+    web3.eth.wait_for_transaction_receipt(send_tx)
+    idx += 1
+    print(contract.functions.getMessage().call())
+    return 0
 
-print(contract.functions.getMessage().call())
+##print(contract.functions.getMessage().call())
+
+if __name__ == "__main__":
+    app.run(debug=True)
+    # Chain_id = web3.eth.chain_id
+    # print("Processing...")
+    # # Call your function
+    # tx_hash = contract.functions.setMessage("aboba").build_transaction(
+    #     {
+    #         "gasPrice": web3.eth.gas_price,
+    #         "chainId": 97,
+    #         "from": caller,
+    #         "nonce": nonce
+    #     }
+    # )
+    # signed_transaction = web3.eth.account.sign_transaction(tx_hash, private_key = private_key)
+    # send_tx = web3.eth.send_raw_transaction(signed_transaction.rawTransaction)
+    # web3.eth.wait_for_transaction_receipt(send_tx)
+
+    # print(contract.functions.getMessage().call())

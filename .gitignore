@@ -1,6 +1,12 @@
-#Contracts
 contracts/node_modules
 contracts/secrets.json
 contracts/package-lock.json
 contracts/artifacts
 contracts/cache
+node_modules
+package-lock.json
+package.json
+backend/node_modules
+backend/package.json
+backend/package-lock.json
+new_venv/
