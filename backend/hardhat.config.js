@@ -18,7 +18,7 @@ module.exports = {
   solidity: "0.8.19",
 
   networks: {
-    sepolia: {
+    bsc_testnet: {
       url: "https://data-seed-prebsc-1-s1.bnbchain.org:8545",
       accounts: [metamask_private_key],
     },
